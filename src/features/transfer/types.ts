@@ -1,0 +1,48 @@
+import { ApiMessage, MessageStage, StageTimings } from '@hyperlane-xyz/widgets';
+
+import type { Route } from '../tokens/routes/types';
+
+export interface TransferFormValues {
+  originCaip2Id: ChainCaip2Id;
+  destinationCaip2Id: ChainCaip2Id;
+  tokenCaip19Id: TokenCaip19Id;
+  amount: string;
+  recipientAddress: Address;
+}
+
+export enum TransferStatus {
+  Preparing = 'preparing',
+  CreatingApprove = 'creating-approve',
+  SigningApprove = 'signing-approve',
+  ConfirmingApprove = 'confirming-approve',
+  CreatingTransfer = 'creating-transfer',
+  SigningTransfer = 'signing-transfer',
+  ConfirmingTransfer = 'confirming-transfer',
+  ConfirmedTransfer = 'confirmed-transfer',
+  Delivered = 'delivered',
+  Failed = 'failed',
+}
+
+// Statuses considered not pending
+export const FinalTransferStatuses = [
+  TransferStatus.ConfirmedTransfer,
+  TransferStatus.Delivered,
+  TransferStatus.Failed,
+];
+
+export interface TransferContext {
+  status: TransferStatus;
+  statusParams?: TransferStatusParams;
+  route: Route;
+  params: TransferFormValues;
+  originTxHash?: string;
+  msgId?: string;
+  timestamp: number;
+  activeAccountAddress: Address;
+}
+
+export interface TransferStatusParams {
+  stage: MessageStage;
+  timings: StageTimings;
+  message: ApiMessage | null;
+}
