@@ -1,0 +1,57 @@
+# A map of chain names to ChainMetadata
+# Chains can be defined here, in chains.json, or in chains.ts
+# Chains already in the SDK need not be included here unless you want to override some fields
+# Schema here: https://github.com/hyperlane-xyz/hyperlane-monorepo/blob/main/typescript/sdk/src/metadata/chainMetadataTypes.ts
+---
+# Example using local anvil chain:
+blast:
+  blockExplorers:
+    - apiUrl: https://api.routescan.io/v2/network/mainnet/evm/81457/etherscan/api
+      family: routescan
+      name: Blast Explorer
+      url: https://blastexplorer.io
+  blocks:
+    confirmations: 1
+    estimateBlockTime: 2
+    reorgPeriod: 1
+  chainId: 81457
+  logoURI: /logos/blast.svg
+  displayName: Blast
+  domainId: 81457
+  gasCurrencyCoinGeckoId: ethereum
+  name: blast
+  nativeToken:
+    decimals: 18
+    name: Ether
+    symbol: ETH
+  protocol: ethereum
+  rpcUrls:
+    - http: https://rpc.blast.io
+  technicalStack: other
+ethereum:
+  blockExplorers:
+    - apiUrl: https://api.etherscan.io/api
+      family: etherscan
+      name: Etherscan
+      url: https://etherscan.io
+    - apiUrl: https://eth.blockscout.com/api
+      family: blockscout
+      name: Blockscout
+      url: https://blockscout.com/eth/mainnet
+  blocks:
+    confirmations: 7
+    estimateBlockTime: 13
+    reorgPeriod: 14
+  chainId: 1
+  displayName: Ethereum
+  domainId: 1
+  gnosisSafeTransactionServiceUrl: https://safe-transaction-mainnet.safe.global/
+  name: ethereum
+  nativeToken:
+    decimals: 18
+    name: Ether
+    symbol: ETH
+  protocol: ethereum
+  rpcUrls:
+    - http: https://ethereum.publicnode.com
+    - http: https://cloudflare-eth.com
